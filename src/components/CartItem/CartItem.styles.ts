@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
 
     div {
         flex: 1;
-
     }
 
     .information, .buttons {

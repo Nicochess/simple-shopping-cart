@@ -1,28 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { Drawer, CircularProgress, Grid, Badge } from "@mui/material";
+import { Drawer, CircularProgress, Badge, Box } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import { Wrapper, StyledButton } from "./App.styles";
-import Item from "./Item/Item";
-import Cart from "./Cart/Cart";
-
-export type CartItemType = {
-  id: number;
-  category: string;
-  description: string;
-  image: string;
-  price: number;
-  title: string;
-  amount: number;
-};
+import Item from "./components/Item/Item";
+import Cart from "./components/Cart/Cart";
 
 const getProducts = async (): Promise<CartItemType[]> => {
   const res = await fetch("https://fakestoreapi.com/products");
   return res.json();
 };
 
-const App = () => {
+const App: React.FC = () => {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
@@ -32,7 +22,6 @@ const App = () => {
 
   const getTotalItems = (items: CartItemType[]) => {
     const res = items.reduce((acc: number, item) => acc + item.amount, 0);
-    console.log(res, items);
     return res;
   };
 
@@ -80,18 +69,22 @@ const App = () => {
           removeFromCart={handleRemoveFromCart}
         />
       </Drawer>
+
       <StyledButton onClick={() => setCartOpen(true)}>
         <Badge badgeContent={getTotalItems(cartItems)} color="error">
           <ShoppingCart />
         </Badge>
       </StyledButton>
-      <Grid container spacing={3}>
+
+      <Box
+        gap={3}
+        display="grid"
+        gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
+      >
         {data?.map((item: CartItemType) => (
-          <Grid key={item.id} item xs={12} sm={4}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
-          </Grid>
+          <Item key={item.id} item={item} handleAddToCart={handleAddToCart} />
         ))}
-      </Grid>
+      </Box>
     </Wrapper>
   );
 };

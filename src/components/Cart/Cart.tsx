@@ -1,5 +1,4 @@
 import React from "react";
-import { CartItemType } from "../App";
 import CartItem from "../CartItem/CartItem";
 import { Wrapper } from "./Cart.styles";
 

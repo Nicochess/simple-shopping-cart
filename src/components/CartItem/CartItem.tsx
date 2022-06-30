@@ -1,6 +1,5 @@
 import React from "react";
 import { Wrapper } from "./CartItem.styles";
-import { CartItemType } from "../App";
 import { Button } from "@mui/material";
 
 type Props = {
