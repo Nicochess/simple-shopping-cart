@@ -13,7 +13,7 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
       <img src={item.image} alt={item.title} />
       <div>
         <h3>{item.title}</h3>
-        <p>{item.description}</p>
+        <p className="description">{item.description}</p>
         <h3>${item.price}</h3>
         <p>Stock: {item.rating.count}</p>
       </div>

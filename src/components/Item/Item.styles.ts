@@ -24,4 +24,9 @@ export const Wrapper = styled.div`
     button {
         margin: 0 0 10px;
     }
+
+    .description {
+        height: 56px;
+        overflow: hidden;
+    }
 `   
