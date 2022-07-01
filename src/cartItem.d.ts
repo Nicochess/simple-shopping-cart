@@ -1,4 +1,4 @@
-type CartItemType = {
+type CartItem = {
     id: number;
     category: string;
     description: string;

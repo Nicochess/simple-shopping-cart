@@ -8,7 +8,7 @@ import Item from "./components/Item/Item";
 import Cart from "./components/Cart/Cart";
 import cartReducer, { ActionKind } from "./Reducer";
 
-const getProducts = async (): Promise<CartItemType[]> => {
+const getProducts = async (): Promise<CartItem[]> => {
   const res = await fetch("https://fakestoreapi.com/products");
   return res.json();
 };
@@ -17,17 +17,17 @@ const App: React.FC = () => {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [state, dispatch] = useReducer(cartReducer, []);
   const [show, setShow] = useState<boolean>(false);
-  const { data, isLoading, error } = useQuery<CartItemType[]>(
+  const { data, isLoading, error } = useQuery<CartItem[]>(
     "Products",
     getProducts
   );
 
-  const getTotalItems = (items: CartItemType[]) => {
+  const getTotalItems = (items: CartItem[]) => {
     const res = items.reduce((acc: number, item) => acc + item.amount, 0);
     return res;
   };
 
-  const addToCart = (item: CartItemType) => {
+  const addToCart = (item: CartItem) => {
     dispatch({ type: ActionKind.addToCart, payload: item });
     setShow(true)
   };
@@ -75,7 +75,7 @@ const App: React.FC = () => {
         display="grid"
         gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
       >
-        {data?.map((item: CartItemType) => (
+        {data?.map((item: CartItem) => (
           <Item key={item.id} item={item} handleAddToCart={addToCart} />
         ))}
       </Box>

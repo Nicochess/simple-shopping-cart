@@ -3,8 +3,8 @@ import { Wrapper } from "./CartItem.styles";
 import { Button } from "@mui/material";
 
 type Props = {
-  item: CartItemType;
-  addToCart: (clickedItem: CartItemType) => void;
+  item: CartItem;
+  addToCart: (clickedItem: CartItem) => void;
   removeFromCart: (id: number) => void;
 };
 

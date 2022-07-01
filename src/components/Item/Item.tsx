@@ -3,8 +3,8 @@ import { Button } from "@mui/material";
 import { Wrapper } from "./Item.styles";
 
 type Props = {
-  item: CartItemType;
-  handleAddToCart: (clickedItem: CartItemType) => void;
+  item: CartItem;
+  handleAddToCart: (clickedItem: CartItem) => void;
 };
 
 const Item: React.FC<Props> = ({ item, handleAddToCart }) => {

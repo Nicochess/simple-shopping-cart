@@ -3,13 +3,13 @@ import CartItem from "../CartItem/CartItem";
 import { Wrapper } from "./Cart.styles";
 
 type Props = {
-  cartItems: CartItemType[];
-  addToCart: (clickedItem: CartItemType) => void;
+  cartItems: CartItem[];
+  addToCart: (clickedItem: CartItem) => void;
   removeFromCart: (id: number) => void;
 };
 
 const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
-  const calculateTotal = (items: CartItemType[]) =>
+  const calculateTotal = (items: CartItem[]) =>
     items.reduce((acc: number, item) => acc + item.price * item.amount, 0);
 
   return (
